@@ -40,20 +40,21 @@
 
   <build>
     <plugins>
+      <!-- Spring Boot Maven Plugin: Creates a Fat JAR -->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.0</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>com.example.cloud.App</mainClass> <!-- Change to your actual main class -->
-            </manifest>
-          </archive>
-        </configuration>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.3.1</version> <!-- Use a version compatible with your Spring Boot -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>  <!-- Ensures dependencies are included -->
+            </goals>
+          </execution>
+        </executions>
       </plugin>
-
     </plugins>
   </build>
+
 
 </project>
