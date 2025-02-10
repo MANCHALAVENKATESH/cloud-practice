@@ -30,7 +30,7 @@ jobs:
         run: mvn test  # Runs unit tests if available
 
       - name: Run Java Application
-        run: nohup java -jar target/cloud.jar # Runs the Hello World app
+        run: java -jar target/cloud.jar # Runs the Hello World app
 
       - name: Check Service Status
         run: curl -s http://localhost:9090/ || exit 1
