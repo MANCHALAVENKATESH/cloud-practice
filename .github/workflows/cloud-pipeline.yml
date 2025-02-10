@@ -24,13 +24,16 @@ jobs:
           distribution: 'temurin'  # Use Eclipse Temurin JDK
 
       - name: Build with Maven
-        run: mvn clean package  # Correct command to build the project
+        run: mvn clean package  # Builds the project
 
       - name: Run Tests
-        run: mvn test  # Runs unit tests if available
+        run: mvn test  # Runs unit tests
 
-      - name: Run Java Application
-        run: java -jar target/cloud.jar # Runs the Hello World app
+      - name: Start Java Application
+        run: nohup java -jar target/cloud-1.0-SNAPSHOT.jar > app.log 2>&1 &  # Runs in background
+
+      - name: Wait for Service to Start
+        run: sleep 10  # Wait for 10 seconds to allow Spring Boot to start
 
       - name: Check Service Status
-        run: curl -s http://localhost:9090/ || exit 1
+        run: curl -s http://localhost:9090/ || (echo "Service is not running!" && cat app.log && exit 1)
