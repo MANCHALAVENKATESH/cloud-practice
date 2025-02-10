@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'  # Use Eclipse Temurin JDK
 
       - name: Build with Maven
-        run: mvn clean install  # Correct command to build the project
+        run: mvn clean package  # Correct command to build the project
 
       - name: Run Tests
         run: mvn test  # Runs unit tests if available
