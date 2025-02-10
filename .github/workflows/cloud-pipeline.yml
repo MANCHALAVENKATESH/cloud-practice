@@ -30,7 +30,7 @@ jobs:
         run: mvn test  # Runs unit tests
 
       - name: Start Java Application
-        run: nohup java -jar target/cloud-1.0-SNAPSHOT.jar > app.log 2>&1 &  # Runs in background
+        run: java -jar target/cloud-1.0-SNAPSHOT.jar  # Runs in background
 
       - name: Wait for Service to Start
         run: sleep 10  # Wait for 10 seconds to allow Spring Boot to start
