@@ -1,0 +1,26 @@
+name: Cloud Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'  # Use Eclipse Temurin JDK
+
+      - name: Build with Maven
+        run: mvn clean install  # Correct command to build the project
+
+      - name: Run Tests
+        run: mvn test  # Runs unit tests if available
+
+      - name: Run Java Application
+        run: java -cp target/classes com.example.cloud.App  # Runs the Hello World app
+
